@@ -9,23 +9,7 @@ html, body {
 }
 
 
-/*============= NAVIGATION =============*/
 
-
-
-
-
-/*============= CAROUSEL =============*/
-
-
-
-/*---Change Carousel Transition Speed --*/
-
-
-/*-- Carousel Content --*/
-
-
-/*============= SOCIAL MEDIA STICKY BAR =============*/
 
 
 .navbar {
@@ -57,11 +41,6 @@ html, body {
 }
 
 
-/*============= COLUMN CONTENT =============*/
-
-
-
-/*===== FIXED BACKGROUND IMG =====*/
 
 .fixed-background {
   padding: 15rem 0;
@@ -77,16 +56,12 @@ html, body {
 }
 
 
-/*============= FOOTER =============*/
+
 
 .input-group-text {
   min-width: 0px;
   text-align: center;
 }
-
-
-
-/*============= SOCKET =============*/
 
 
 
@@ -96,7 +71,7 @@ html, body {
 @media (max-width: 1199.98px) {
   #cartText {
     font-size: 2rem;
-    
+
   }
 
 }
