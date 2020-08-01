@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-auth.js"></script>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Firebase Web Test</title>
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Style CSS -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+	
+	<div id="navigation-sticky">
+
+		<!-- Navigation -->
+		<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-item nav-link" href="#">Features</a>
+					<a class="nav-item nav-link" href="#" id="modalNavButton">Login</a>
+					<a class="nav-item nav-link disabled" href="#">Disabled</a>
+				</div>
+				</div>
+			</div>
+			</nav>
+		</div>
+		
+
+	<div class="jumbotron jumbotron.fluid">
+		<div class="container">
+			<h1 class="display-4">Fluid jumbotron</h1>
+			<p class="lead">Takes up all horizontal view</p>
+		</div>
+	</div>
+	
+
+	<div class="border-top border-dark w-70 mx-auto my-3"></div>
+
+	<div class="container-lg mt-5">
+		<div class="row">
+			<div class="col-lg-5 mb-4 my-lg-auto">
+				<ul class="list-group" id="displayMainDishes"></ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="fixed-background">
+		<div class="fixed-wrap">
+			<div class="fixed">
+			</div>
+		</div>
+	</div>
+	
+
+	<!-- Modal -->
+	<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				<!--lägg till bootstrap form istället för inputgroup-->
+			  <div class="input-group input-group-sm mb-3" id="">
+				  <div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">@</span>
+				  </div>
+				  <input type="text" class="form-control" id="inputEmail" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+			  </div>
+			  <div class="input-group input-group-sm mb-3" id="">
+				<div class="input-group-prepend">
+				  <span class="input-group-text" id="inputGroup-sizing-sm">**</span>
+				</div>
+				<input type="password" class="form-control" id="inputPassword" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+			</div>
+
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <button type="button" class="btn btn-primary" id="loginButton">Login</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	
+
+	  
+
+	  <!-- Start Fixed Background IMG -->
+	
+	<!-- End Fixed Background IMG -->
+	
+	
+
+	<!-- Start Website Designs Jumbotron -->
+	<div class="jumbotron py-5 mb-0 fixed-bottom" id="shoppingCart">
+		<div class="container-lg my-3 border" id="cartContainer">
+			<div class="row">
+				<h1 id="cartText">Cart</h1>
+				<ul class="list-group list-group-horizontal">
+					<li class="list-group-item">rätt</li>
+					<li class="list-group-item">adde</li>
+					<li class="list-group-item">aaaa</li>
+
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	 <!-- End Website Designs Jumbotron -->
+
+	
+
+
+
+	<!-- Script Source Files -->
+
+	<!-- jQuery -->
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Popper JS -->
+	<script src="js/popper.min.js"></script>
+	<!-- Font Awesome -->
+	<script src="js/all.min.js"></script>
+
+	<script src="js/app.js"></script>
+
+	
+
+
+
+
+
+	<!-- End Script Source Files -->
+</body>
+</html>
