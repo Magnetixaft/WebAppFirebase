@@ -22,11 +22,10 @@
 
 
 <body>
-	
+	<div class="container" id="navContainer">
 	<div id="navigation-sticky">
-
 		<!-- Navigation -->
-		<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-light">
 			<div class="container">
 				<a class="navbar-brand" href="#">Navbar</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,17 +36,17 @@
 					<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
 					<a class="nav-item nav-link" href="#">Features</a>
 					<a class="nav-item nav-link" href="#" id="modalNavButton">Login</a>
-					<a class="nav-item nav-link disabled" href="#">Disabled</a>
 				</div>
 				</div>
 			</div>
 			</nav>
 		</div>
+	</div>
 		
 
-	<div class="jumbotron jumbotron.fluid">
+	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-4">Fluid jumbotron</h1>
+			<h1 class="display">Fluid jumbotron</h1>
 			<p class="lead">Takes up all horizontal view</p>
 		</div>
 	</div>
@@ -55,10 +54,19 @@
 
 	<div class="border-top border-dark w-70 mx-auto my-3"></div>
 
-	<div class="container-lg mt-5">
+	<div class="container" id="dishContainer">
 		<div class="row">
-			<div class="col-lg-5 mb-4 my-lg-auto">
-				<ul class="list-group" id="displayMainDishes"></ul>
+			<div class="col">
+				<ul class="list-group" id="displayMainDishes">
+				<li class="list-group-item" data-id="GoRätt">
+					<h5 class="mb-1" id="nameOfDish">Go rätt med fött käk ba</h5>
+					<p class="mb-1" id="descriptionOfDish">Go jävla rätt, ingen flärpig sås</p>
+					<small id="priceOfDish">100 kr</small>
+					<span>
+						<button type="button" class="btn-primary" id="addToCartButton">Add</button>
+					</span>
+				</ul>
+				</li>
 			</div>
 		</div>
 	</div>
@@ -107,30 +115,23 @@
 	  </div>
 	
 
-	  
-
-	  <!-- Start Fixed Background IMG -->
 	
-	<!-- End Fixed Background IMG -->
-	
-	
-
-	<!-- Start Website Designs Jumbotron -->
-	<div class="jumbotron py-5 mb-0 fixed-bottom" id="shoppingCart">
-		<div class="container-lg my-3 border" id="cartContainer">
-			<div class="row">
-				<h1 id="cartText">Cart</h1>
-				<ul class="list-group list-group-horizontal">
-					<li class="list-group-item">rätt</li>
-					<li class="list-group-item">adde</li>
-					<li class="list-group-item">aaaa</li>
-
+	  	<div id="cartVisibility"><!-- style="display: none;"> cart hidden until item added-->
+		<div class="card fixed-bottom" id="shoppingCart">
+			<div class="card-body">
+				<div class="card-header">Cart:</div> 
+					<ul class="list-group-horizontal" id="cartItems"></ul>
+					<div>
+						<p id="scrollInfo">Scroll to view more</p>
+					<a href="#" class="btn btn-primary" id="checkoutButton">Checkout</a>
+				</div>
 					
-				</ul>
+					
 			</div>
 		</div>
-	</div>
-	 <!-- End Website Designs Jumbotron -->
+			
+		</div>
+
 
 	
 

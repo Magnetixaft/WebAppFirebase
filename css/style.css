@@ -4,49 +4,93 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
-  font-size: large;
-  
+  font-size: small;
+  color: #000000;
 }
 
 
-
-
+/* Navigation */
+#navContainer {
+  height: 6%;
+  border-bottom: #000000;
+}
 
 .navbar {
-  height: 40px;
-  background: linear-gradient(to right, #3DCCFF, #FFFFFF) !important;
+  height: 6%;
+  color: #000000;
+  background-color: #FFCE33 ;
+  border-bottom: #000000;
+
+}
+#navbarNavAltMarkup {
+  background-color: #FFCE33;
+  width: 100%;
+  
+  outline: #000000;
 }
 
 .jumbotron {
-  background: linear-gradient(to right, #3DCCFF, #FFFFFF);
+  background-color: #DEDEDE;
   padding: 1rem 0 .5rem;
-  margin-bottom: 0;
-  /*margin between navbar and jumbotron*/
-  margin-top: 40px;
   border-radius: 0;
-  box-shadow: 0 .5rem .5rem rgba(0, 0, 0, .1);
-
-}
-
-.list-group-item{
-  
 }
 
 #addToCartButton {
   float: right;
+  background-color: #FFCE33;
+  color: #000000;
+  border-color: #000000;
 }
 
-#cartContainer {
-  max-height: 6rem;
+/*Shoppingcart*/
+#shoppingCart {
+  background-color: #DEDEDE;
+  height: 20%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: .05rem solid #000000;
 }
 
+#cartItems {
+  height: 34%;
+  display:inline-flex;
+  flex-flow:row wrap;
+  overflow: auto;
+}
 
+#cartItems li::after {
+  content: ", ";
+}
 
+#cartItems li:last-child:after {
+  content: "";
+}
+
+#dishCartItem {
+  flex-basis: auto;
+  margin-left: 0.5rem;
+  display: inline;
+  list-style: none;
+}
+
+#checkoutButton {
+  float: right;
+  background-color: #FFCE33;
+  color: #000000;
+  border-color: #000000;
+  margin-bottom: 1%;
+  margin-right: 1%;
+  width: 25%;
+}
+
+#scrollInfo {
+  float: left;
+}
 .fixed-background {
   padding: 15rem 0;
-  border-top: .05rem solid black;
-  border-bottom: .05rem solid black;
-  margin-bottom: 2px;
+  border-top: .05rem solid #000000;
+  border-bottom: .05rem solid #000000;
   size: 10%;
 
 }
@@ -56,38 +100,30 @@ html, body {
 }
 
 
-
-
-.input-group-text {
-  min-width: 0px;
-  text-align: center;
-}
-
-
-
 /*============= MEDIA QUERIES =============*/
 
-/* Devices under 1199px (xl) */
-@media (max-width: 1199.98px) {
-  #cartText {
-    font-size: 2rem;
 
+@media screen and (min-width: 767.98px) {
+  p {
+    font-size: 0.7rem;
   }
 
 }
-/* Devices under 992px (xl) */
-@media (max-width: 991.98px) {
+
+@media only screen and (min-width: 991.98px) {
+  p {
+    font-size: 0.85rem;
+  }
 
 }
-/* Devices under 768px (md) */
-@media (max-width: 767.98px) {
 
-}
-/* Devices under 576px (sm) */
-@media (max-width: 575.98px) {
+@media only screen and (min-width: 1199.98px) {
+  p {
+    font-size: 1rem;
+  }
   
-
 }
+
 
 
 /*============ BOOTSTRAP BREAK POINTS:

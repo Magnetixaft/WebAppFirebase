@@ -16,9 +16,6 @@ var firebaseConfig = {
 const db = firebase.firestore();
   
 
-
-
-
 var modal = document.getElementById("exampleModalCenter");
 var modalButton = document.getElementById("modalNavButton");
 modalButton.onclick =  function() {
@@ -26,29 +23,52 @@ modalButton.onclick =  function() {
 
 };
 
+const displayCart = document.querySelector("#cartItems")
+function addSelectedDishToCart(nameDish){
+    let li = document.createElement("li");
+    li.textContent = nameDish;
+    li.id = "dishCartItem"
+
+    displayCart.appendChild(li);
+}
+
+
+
+$(document).ready(function(){
+    $('#dishContainer').on('click', '#addToCartButton', function(){
+        nameDish = $(this).closest("li").children("h5").text();
+        descriptionDish = $(this).closest("li").children("p").text();
+        priceDish = $(this).closest("li").children("small").text();
+        console.log(nameDish, descriptionDish, priceDish)
+        $("#cartVisibility").show();
+        addSelectedDishToCart(nameDish);
+    })
+});
+
+
+
 const displayMainDishes = document.querySelector("#displayMainDishes")
 function renderDish(doc){
     let li = document.createElement("li");
     let name = document.createElement("h5");
     let description = document.createElement("p");
     let price = document.createElement("small")
-    let addToCartButton = document.createElement("button");
 
     li.classList.add("list-group-item")
     name.classList.add("mb-1")
     description.classList.add("mb-1")
-    addToCartButton.classList.add("btn-primary")
     
     name.id = "nameOfDish";
     description.id = "descriptionOfDish";
     price.id = "priceOfDish";
-    addToCartButton.id = "addToCartButton";
 
-    li.setAttribute('data-id', doc.id);
+    li.setAttribute('id', doc.id);
     name.textContent = doc.data().name;
     description.textContent = doc.data().description;
     price.textContent = doc.data().price + " kr";
-    addToCartButton.innerHTML = "Add";
+
+    var addToCartButton = document.createElement("span")
+    addToCartButton.innerHTML = '<button type="button" class="btn-primary" id="addToCartButton">Add</button>'
 
     li.appendChild(name);
     li.appendChild(description);
@@ -56,6 +76,17 @@ function renderDish(doc){
     li.appendChild(addToCartButton);
     displayMainDishes.appendChild(li);
 }
+
+$("#checkoutButton").click(function(){
+    $("#cartItems li").each(function(){
+        console.log($(this).text());
+        
+
+    })
+});
+
+
+
 
 var userRef1 = db.collection("food");
 
