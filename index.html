@@ -27,7 +27,7 @@
 		<!-- Navigation -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-light">
 			<div class="container">
-				<a class="navbar-brand" href="#">Navbar</a>
+				<a class="navbar-brand" href="#">Name of rest</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
@@ -81,38 +81,83 @@
 	
 
 	<!-- Modal -->
-	<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal" id="logInSignUpModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 		  <div class="modal-content">
-			<div class="modal-header">
-			  <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+			  
+			<div class="modal-header row d-flex">
+				<div class="tabs active" id="logInTab">
+					<h6 class="font-weight-bold">LogIn</h6>
+				</div>
+				<div class="tabs" id="signUpTab">
+				  <h6 class="text-muted">Sign Up</h6>
+			  </div>
 			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			  </button>
 			</div>
+			
 			<div class="modal-body">
-				<!--lägg till bootstrap form istället för inputgroup-->
-			  <div class="input-group input-group-sm mb-3" id="">
-				  <div class="input-group-prepend">
-					<span class="input-group-text" id="inputGroup-sizing-sm">@</span>
-				  </div>
-				  <input type="text" class="form-control" id="inputEmail" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-			  </div>
-			  <div class="input-group input-group-sm mb-3" id="">
-				<div class="input-group-prepend">
-				  <span class="input-group-text" id="inputGroup-sizing-sm">**</span>
+				<fieldset class="show" id="logInFieldset">
+				<form>
+				<div class="form-group row" id="emailRow">
+					<label for="inputEmail" class="col-form-label">@</label>
+					<div class="col">
+					<input type="text" class="form-control" id="inputLogInEmail" placeholder="Email">
+					</div>
 				</div>
-				<input type="password" class="form-control" id="inputPassword" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+				<div class="form-group row" id="passwordRow">
+				<label for="inputPassword" class="col-form-label">**</label>
+				<div class="col">
+				<input type="password" class="form-control" id="inputLogInPassword" placeholder="Password">
 			</div>
+			</div>
+			<div id="logInFooter">
+			  <button type="button" class="btn btn-secondary" id="signUpModalButton">Don't have an account? Sign Up</button>
+			  <button type="button" class="btn btn-primary" id="logInAccountButton">Login</button>
+			  </div>
+			</form>
+	
+		</fieldset>
+		<fieldset id="signUpFieldset">
+			<form>
+			  <div class="form-group row" id="emailRow">
+					<label for="inputEmail" class="col-form-label">@</label>
+					<div class="col">
+					<input type="text" class="form-control" id="inputSignUpEmail" placeholder="Email">
+					</div>
+				</div>
+			  <div class="form-group row" id="passwordRow">
+				<label for="inputPassword" class="col-form-label">**</label>
+				<div class="col">
+				<input type="password" class="form-control" id="inputSignUpPassword" placeholder="Password">
+			</div>
+			</div>
+			<div id="signUpFooter">
+				<button type="button" class="btn btn-secondary" id="logInModalButton">Already have an account? Log In</button>
+				<button type="button" class="btn btn-primary" id="signUpButton">Sign Up</button>
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
 
-			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  <button type="button" class="btn btn-primary" id="loginButton">Login</button>
-			</div>
-		  </div>
+
+
+
+
+
+
+		</fieldset>
 		</div>
 	  </div>
+
+			  
+
+
+
+
+	  
 	
 
 	
@@ -123,7 +168,7 @@
 					<ul class="list-group-horizontal" id="cartItems"></ul>
 					<div>
 						<p id="scrollInfo">Scroll to view more</p>
-					<a href="#" class="btn btn-primary" id="checkoutButton">Checkout</a>
+					<button href="#" class="btn btn-primary" id="checkoutButton">Checkout</button>
 				</div>
 					
 					

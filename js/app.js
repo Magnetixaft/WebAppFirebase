@@ -16,12 +16,8 @@ var firebaseConfig = {
 const db = firebase.firestore();
   
 
-var modal = document.getElementById("exampleModalCenter");
-var modalButton = document.getElementById("modalNavButton");
-modalButton.onclick =  function() {
-    modal.style.display = "block";
 
-};
+
 
 const displayCart = document.querySelector("#cartItems")
 function addSelectedDishToCart(nameDish){
@@ -99,7 +95,42 @@ userRef1.get().then(snapshot => {
    
 
 
+var logInAccountButton = document.getElementById("logInAccountButton");
 
+logInAccountButton.addEventListener("click", e => {
+    const email = inputLogInEmail.value;
+    const password = InputLoginPassword.value;
+    
+
+    const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+});
+
+$("#modalNavButton").on("click",function(e){
+    e.preventDefault();
+    $('#logInSignUpModal').modal('show');
+})
+
+
+
+$(document).ready(function(){
+
+    $("#signUpTab, #signUpModalButton").click(function(){
+    
+
+        $("#logInFieldset").css('display', 'none')
+        $("#signUpFieldset").css('display', 'block')
+        })
+    
+        $("#logInTab, #logInModalButton").click(function(){
+    
+            $("#signUpFieldset").css('display', 'none')
+            $("#logInFieldset").css('display', 'block')
+    
+    
+        })
+        
+    });
 
 
 
@@ -108,6 +139,29 @@ userRef1.get().then(snapshot => {
 /*
 
 
+
+
+
+
+
+
+
+$("#secondaryAccountButton").on("click", function() { 
+        $("#modalTitle").text("Sign Up"); 
+        $("#secondaryAccountButton").text("Already have an account? Log In"); 
+        $("#primaryAccountButton").text("Sign Up"); 
+
+
+
+        
+
+})
+
+        var inputEmail = document.getElementById("inputEmail");
+        var InputPassword = document.getElementById("inputPassword");
+        var primaryAccountButton = document.getElementById("primaryAccountButton");
+
+        var modalTitle = document.getElementById("exampleModalLongTitle")
 
 
 const docRef = firestore.collection("text").doc("text");
@@ -154,16 +208,5 @@ getRealtimeUpdates();
 
 
 
-var inputEmail = document.getElementById("inputEmail");
-var InputPassword = document.getElementById("inputPassword");
-var loginButton = document.getElementById("loginButton");
 
-loginButton.addEventListener("click", e => {
-    const email = inputEmail.value;
-    const password = InputPassword.value;
-    
-
-    const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});
 */
