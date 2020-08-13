@@ -19,11 +19,16 @@ const db = firebase.firestore();
 
 
 
-const displayCart = document.querySelector("#cartItems")
-function addSelectedDishToCart(nameDish){
+var cart = [];
+var cartIndex = 0;
+function addSelectedDishToCart(nameDish, cartIndex){
+    const displayCart = document.querySelector("#cartItems")
     let li = document.createElement("li");
     li.textContent = nameDish;
-    li.id = "dishCartItem"
+    li.id = "cartDishItem";
+    cart.push(nameDish+cartIndex);
+    
+
 
     displayCart.appendChild(li);
 }
@@ -31,20 +36,23 @@ function addSelectedDishToCart(nameDish){
 
 
 $(document).ready(function(){
+    
     $('#dishContainer').on('click', '#addToCartButton', function(){
         nameDish = $(this).closest("li").children("h5").text();
         descriptionDish = $(this).closest("li").children("p").text();
         priceDish = $(this).closest("li").children("small").text();
         console.log(nameDish, descriptionDish, priceDish)
         $("#cartVisibility").show();
-        addSelectedDishToCart(nameDish);
+        cartIndex++;
+        addSelectedDishToCart(nameDish, cartIndex-1);
     })
 });
 
 
 
-const displayMainDishes = document.querySelector("#displayMainDishes")
+
 function renderDish(doc){
+    const displayMainDishes = document.querySelector("#displayMainDishes")
     let li = document.createElement("li");
     let name = document.createElement("h5");
     let description = document.createElement("p");
@@ -73,38 +81,97 @@ function renderDish(doc){
     displayMainDishes.appendChild(li);
 }
 
-$("#checkoutButton").click(function(){
-    $("#cartItems li").each(function(){
-        console.log($(this).text());
-        
 
-    })
-});
+var foodRef = db.collection("food");
 
-
-
-
-var userRef1 = db.collection("food");
-
-userRef1.get().then(snapshot => {
+foodRef.get().then(snapshot => {
     snapshot.docs.forEach(doc => {
         renderDish(doc);
     })
    
 });
+
+$("#tableNumberButton").on("click", function(){
+    var tableNumber = $("#tableNumberInput").val();
+    $("#tableNumberInput").css('display', 'none');
+    $("#tableNumberButton").css('display', 'none');
+    $("#scrollInfo").text("Table: " + tableNumber);
+})
+
+/* TODO send to "kitchen" instead of firestore*/
+$("#checkoutButton").click(function(){
+
+    $('#confirmCartModal').modal('show');
+    const confirmCartList = document.querySelector("#confirmCartList");
+    var userID = firebase.auth().currentUser.uid;
+    var userRef = db.collection("users");
+    var tableNumber =  $("#scrollInfo").text();
+
+
+    function confirmRenderDish(dishName, indexDish){
+        let li = document.createElement("li");
+        let dishNameConfirm = document.createDocumentFragment("h5");
+        let trashButton = document.createElement("button");
+        trashButton.classList.add("btn");
+        trashButton.type = ("button")
+        trashButton.id = ("trashButton")
+        let trashIcon = '<i class="fa fa-trash"></i>'
+        trashButton.innerHTML = trashIcon;
+
+        dishNameConfirm.textContent = dishName;
+        li.classList.add("list-group-item");
+        li.classList.add("d-flex");
+        li.classList.add("justify-content-between");
+        li.classList.add("align-items-center");
+        li.id = ("dishItemConfirmed"+ indexDish);
+        li.appendChild(dishNameConfirm);
+        li.appendChild(trashButton);
+        confirmCartList.appendChild(li);
+
+       
+        
+    }
+    indexDish=0;
+    $.each(cart, function(index, value){
+        
+        var dishName = value;
+        console.log(value);
+        indexDish++;
+        confirmRenderDish(dishName, indexDish-1);
+        /* detta skriver till firebase istället för confirmModal
+        var dish =  $(this).text();
+        Orders.push(dish);
+        });
+        userRef.doc(userID).set({
+            table : tableNumber,
+            Orders
+        });
+        */
+       
+});
+$("#trashButton").click(function(){
+    console.log("sho");
+    var idRemove = $(this).closest("li").attr("id");
+    
+    console.log(idRemove.slice(-1));
+});
+
+
+});
+
+
+
+$("#confirmOrderButton").on("click", function(){
+    console.log(cart);
+})
+
+
+
+
+
    
 
 
-var logInAccountButton = document.getElementById("logInAccountButton");
-
-logInAccountButton.addEventListener("click", e => {
-    const email = inputLogInEmail.value;
-    const password = InputLoginPassword.value;
-    
-
-    const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
-    promise.catch(e => console.log(e.message));
-});
 
 $("#modalNavButton").on("click",function(e){
     e.preventDefault();
@@ -131,6 +198,19 @@ $(document).ready(function(){
         })
         
     });
+
+$("#signUpButton").on("click", function(){
+    var email = $("#inputSignUpEmail").val();
+    var password = $("#inputSignUpPassword").val();
+
+    const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
+
+    var user = firebase.auth().currentUser;
+    console.log(user.uid);
+
+
+});
 
 
 
@@ -210,3 +290,4 @@ getRealtimeUpdates();
 
 
 */
+

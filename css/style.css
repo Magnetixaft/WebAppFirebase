@@ -37,9 +37,6 @@ html, body {
 
 #addToCartButton {
   float: right;
-  background-color: #FFCE33;
-  color: #000000;
-  border-color: #000000;
 }
 
 /*Shoppingcart*/
@@ -59,6 +56,13 @@ html, body {
   overflow: auto;
 }
 
+#cartItems li {
+  flex-basis: auto;
+  margin-left: 0.5rem;
+  display: inline;
+  list-style: none;
+}
+
 #cartItems li::after {
   content: ", ";
 }
@@ -67,18 +71,10 @@ html, body {
   content: "";
 }
 
-#dishCartItem {
-  flex-basis: auto;
-  margin-left: 0.5rem;
-  display: inline;
-  list-style: none;
-}
+
 
 #checkoutButton {
   float: right;
-  background-color: #FFCE33;
-  color: #000000;
-  border-color: #000000;
   margin-bottom: 1%;
   margin-right: 1%;
   width: auto;
@@ -88,12 +84,16 @@ html, body {
   float: left;
 }
 
+/* ConfirmModal */
+#dishConfirmList li{
+  flex: auto;
+  align-items: center;
+  justify-content: space-between
 
-/*Login/Signup*/
-.modal {
-  
 }
 
+
+/*Login/Signup*/
 #signUpFieldset {
   display: none;
 }
@@ -110,6 +110,19 @@ html, body {
 .tabs:hover,
 .tabs.active {
   border-bottom: 1px solid #2196F3
+}
+
+.btn-primary {
+  background-color: #FFCE33 !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+
+}
+
+.btn-primary:active {
+  background-color: #000000 !important;
+  color: #FFCE33 !important;
+  border-color: #FFCE33 !important;
 }
 
 
