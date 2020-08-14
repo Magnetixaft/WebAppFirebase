@@ -48,7 +48,7 @@
 
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display">Tablenumber: </h1>
+			<h1 class="display" id="signedInUser">User: </h1>
 			<div class="row">
 			<input type="text" id="tableNumberInput" placeholder="Enter tablenumber">
 			<button type="button" class="btn-primary" id="tableNumberButton">Save</button>
@@ -63,13 +63,7 @@
 		<div class="row">
 			<div class="col">
 				<ul class="list-group" id="displayMainDishes">
-				<li class="list-group-item" data-id="GoRätt">
-					<h5 class="mb-1" id="nameOfDish">Go rätt med fött käk ba</h5>
-					<p class="mb-1" id="descriptionOfDish">Go jävla rätt, ingen flärpig sås</p>
-					<small id="priceOfDish">100 kr</small>
-					<span>
-						<button type="button" class="btn-primary" id="addToCartButton">Add</button>
-					</span>
+			
 				</ul>
 				</li>
 			</div>
@@ -157,7 +151,6 @@
 				<div class="card-header">Cart:</div> 
 					<ul class="list-group-horizontal" id="cartItems"></ul>
 					<div>
-						<p id="scrollInfo">Scroll to view more</p>
 					<button href="#" class="btn btn-primary" id="checkoutButton">Checkout</button>
 				</div>
 					

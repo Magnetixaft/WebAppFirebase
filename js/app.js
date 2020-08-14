@@ -17,23 +17,32 @@ const db = firebase.firestore();
   
 
 
+$(document).ready(function(){
+
+    var user = firebase.auth().currentUser;
+    
+    if (user == null){
+        $('#logInSignUpModal').modal('show');
+        
+
+    }
+});
+$("#signedInUser").click(function(){
+    var user = firebase.auth().currentUser;
+    console.log(user.uid);
+})
 
 
 var cart = [];
-var cartIndex = 0;
-function addSelectedDishToCart(nameDish, cartIndex){
+function addSelectedDishToCart(nameDish){
+
     const displayCart = document.querySelector("#cartItems")
     let li = document.createElement("li");
     li.textContent = nameDish;
-    li.id = "cartDishItem";
-    cart.push(nameDish+cartIndex);
-    
-
-
+    li.id = nameDish;
+    cart.push(nameDish);
     displayCart.appendChild(li);
 }
-
-
 
 $(document).ready(function(){
     
@@ -43,8 +52,7 @@ $(document).ready(function(){
         priceDish = $(this).closest("li").children("small").text();
         console.log(nameDish, descriptionDish, priceDish)
         $("#cartVisibility").show();
-        cartIndex++;
-        addSelectedDishToCart(nameDish, cartIndex-1);
+        addSelectedDishToCart(nameDish);
     })
 });
 
@@ -108,13 +116,12 @@ $("#checkoutButton").click(function(){
     var tableNumber =  $("#scrollInfo").text();
 
 
-    function confirmRenderDish(dishName, indexDish){
+    function confirmRenderDish(dishName){
         let li = document.createElement("li");
-        let dishNameConfirm = document.createDocumentFragment("h5");
-        let trashButton = document.createElement("button");
-        trashButton.classList.add("btn");
-        trashButton.type = ("button")
-        trashButton.id = ("trashButton")
+        let dishNameConfirm = document.createElement("h5");
+        let trashButton = document.createElement("a");
+        li.classList.add("dishListView");
+        trashButton.classList.add("trashButton");
         let trashIcon = '<i class="fa fa-trash"></i>'
         trashButton.innerHTML = trashIcon;
 
@@ -123,21 +130,40 @@ $("#checkoutButton").click(function(){
         li.classList.add("d-flex");
         li.classList.add("justify-content-between");
         li.classList.add("align-items-center");
-        li.id = ("dishItemConfirmed"+ indexDish);
+        li.id = (nameDish);
         li.appendChild(dishNameConfirm);
         li.appendChild(trashButton);
+        
         confirmCartList.appendChild(li);
-
-       
-        
     }
-    indexDish=0;
-    $.each(cart, function(index, value){
+
+    
+
+    var cartDisplayLength = ($("#confirmCartList li").length);
+    var cartArrayLength = cart.length;
+
+    if(cartDisplayLength == 0){
+        console.log("Cartdisplay is empty, adding from CartArray");
+        $.each(cart, function(index, value){
+            var dishName = value;
+            confirmRenderDish(dishName);
+    })
+    }else if(cartDisplayLength < cartArrayLength){
+        var cartDiff = cartArrayLength - cartDisplayLength;
+        var indexDiff = cartArrayLength - cartDiff;
+        $.each(cart.slice(indexDiff), function(index, value){
+            var dishName = value;
+            confirmRenderDish(dishName);
+        })
+
+    }else if(cartDisplayLength > cartArrayLength){
+        console.log("buggat");
+    }
         
-        var dishName = value;
-        console.log(value);
-        indexDish++;
-        confirmRenderDish(dishName, indexDish-1);
+    
+
+    
+        
         /* detta skriver till firebase istället för confirmModal
         var dish =  $(this).text();
         Orders.push(dish);
@@ -148,30 +174,27 @@ $("#checkoutButton").click(function(){
         });
         */
        
-});
-$("#trashButton").click(function(){
-    console.log("sho");
-    var idRemove = $(this).closest("li").attr("id");
     
-    console.log(idRemove.slice(-1));
-});
 
+$(".trashButton").unbind().click(function(){
 
-});
-
-
-
-$("#confirmOrderButton").on("click", function(){
+    var indexDish = $(this).parent("li").index();
+    $(this).parent("li").remove();
+    $("#cartItems li").eq(indexDish).remove();
+    cart.splice(indexDish, 1);
+    })
+    
+    
+$("#confirmOrderButton").unbind().click(function(){
     console.log(cart);
+    userRef.doc(userID).set({
+        cart
+    });
 })
 
-
-
-
+});
 
    
-
-
 
 $("#modalNavButton").on("click",function(e){
     e.preventDefault();
@@ -181,7 +204,6 @@ $("#modalNavButton").on("click",function(e){
 
 
 $(document).ready(function(){
-
     $("#signUpTab, #signUpModalButton").click(function(){
     
 
@@ -193,10 +215,7 @@ $(document).ready(function(){
     
             $("#signUpFieldset").css('display', 'none')
             $("#logInFieldset").css('display', 'block')
-    
-    
         })
-        
     });
 
 $("#signUpButton").on("click", function(){
@@ -206,10 +225,14 @@ $("#signUpButton").on("click", function(){
     const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
     promise.catch(e => console.log(e.message));
 
-    var user = firebase.auth().currentUser;
-    console.log(user.uid);
+});
 
+$("#logInAccountButton").on("click", function(){
+    var email = $("#inputLogInEmail").val();
+    var password = $("#inputLogInPassword").val();
 
+    const promise = firebase.auth().signInWithEmailAndPassword(email, password);
+    promise.catch(e => console.log(e.message));
 });
 
 
