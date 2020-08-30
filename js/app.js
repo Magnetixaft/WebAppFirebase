@@ -14,21 +14,24 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   
 const db = firebase.firestore();
-  
+renderDishFirestore()
 
 
 $(document).ready(function(){
 
-    var user = firebase.auth().currentUser;
-    
-    if (user == null){
+    if (firebase.auth().currentUser == null){
         $('#logInSignUpModal').modal('show');
+        console.log(firebase.auth().currentUser.uid);
         
 
+    } if(firebase.auth().currentUser != null){
+        $('#signedInUser').text(firebase.auth().currentUser.email)
     }
+
 });
 $("#signedInUser").click(function(){
     var user = firebase.auth().currentUser;
+    $('#signedInUser').text(firebase.auth().currentUser.email)
     console.log(user.uid);
 })
 
@@ -44,22 +47,77 @@ function addSelectedDishToCart(nameDish){
     displayCart.appendChild(li);
 }
 
-$(document).ready(function(){
-    
-    $('#dishContainer').on('click', '#addToCartButton', function(){
-        nameDish = $(this).closest("li").children("h5").text();
-        descriptionDish = $(this).closest("li").children("p").text();
-        priceDish = $(this).closest("li").children("small").text();
-        console.log(nameDish, descriptionDish, priceDish)
-        $("#cartVisibility").show();
-        addSelectedDishToCart(nameDish);
+
+$('#dishContainer').on('click', '#addToCartButton', function(){
+    nameDish = $(this).closest("li").children("h5").text();
+    descriptionDish = $(this).closest("li").children("p").text();
+    priceDish = $(this).closest("li").children("small").text();
+    console.log(nameDish, descriptionDish, priceDish)
+    $("#cartVisibility").show();
+    addSelectedDishToCart(nameDish);
+})  
+
+function signedIn() {
+
+    var user = firebase.auth().currentUser;
+    if (firebase.auth().currentUser == null){
+        $('#logInSignUpModal').modal('show');
+        console.log(firebase.auth().currentUser.uid);
+        $('#signedInUser').text(user.email)
+        
+
+    } if(firebase.auth().currentUser != null){
+        $('#signedInUser').text(user.email)
+    }
+
+}
+
+
+class DishObject {
+    constructor (name, description, price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+    toString() {
+        return this.name + ', ' + this.description + ', ' + this.price;
+    }
+    toFirebase() {
+        return {
+            name: this.name, 
+            description: this.description,
+            price: this.price
+        }
+    }
+}
+
+function createDish(name, description, price){
+
+    var userRef = db.collection("text");
+    var mainDishes = userRef.doc('Maindishes')
+    var matRatt = new DishObject(name, description, price)
+
+    var dataFirestore = { [name]: matRatt.toFirebase()}
+    mainDishes.set(dataFirestore)
+}
+
+
+function renderDishFirestore(){
+    var foodMainRef = db.collection("text").doc("Maindishes");
+    foodMainRef.get().then(snapshot => {
+        const dishes = snapshot.data();
+
+        for(const key in dishes) {
+            const disj = dishes[key];
+            renderDishHTML(disj)
+
+        }
+        signedIn()
     })
-});
-
-
-
-
-function renderDish(doc){
+    
+}
+        
+function renderDishHTML(dishFromFirestore){
     const displayMainDishes = document.querySelector("#displayMainDishes")
     let li = document.createElement("li");
     let name = document.createElement("h5");
@@ -74,10 +132,9 @@ function renderDish(doc){
     description.id = "descriptionOfDish";
     price.id = "priceOfDish";
 
-    li.setAttribute('id', doc.id);
-    name.textContent = doc.data().name;
-    description.textContent = doc.data().description;
-    price.textContent = doc.data().price + " kr";
+    name.textContent = dishFromFirestore.name;
+    description.textContent = dishFromFirestore.description;
+    price.textContent = dishFromFirestore.price + " kr";
 
     var addToCartButton = document.createElement("span")
     addToCartButton.innerHTML = '<button type="button" class="btn-primary" id="addToCartButton">Add</button>'
@@ -90,24 +147,37 @@ function renderDish(doc){
 }
 
 
-var foodRef = db.collection("food");
-
-foodRef.get().then(snapshot => {
-    snapshot.docs.forEach(doc => {
-        renderDish(doc);
-    })
-   
-});
 
 $("#tableNumberButton").on("click", function(){
-    var tableNumber = $("#tableNumberInput").val();
-    $("#tableNumberInput").css('display', 'none');
-    $("#tableNumberButton").css('display', 'none');
-    $("#scrollInfo").text("Table: " + tableNumber);
+
+    var user = firebase.auth().currentUser;
+    createDish("Flärpig Pasta", "Go flärpig Pasta", 110)
+    
+    if (user == null){
+        $('#logInSignUpModal').modal('show');
+    }
+    else{
+
+
+        $('#signedInUser').text(user.email);
+        console.log(user.email);
+        
+
+        var tableNumber = $("#tableNumberInput").val();
+        $("#tableNumberInput").css('display', 'none');
+        $("#tableNumberButton").css('display', 'none');
+        $("#scrollInfo").text("Table: " + tableNumber);
+
+    }
+
+
+
 })
 
 /* TODO send to "kitchen" instead of firestore*/
 $("#checkoutButton").click(function(){
+
+    
 
     $('#confirmCartModal').modal('show');
     const confirmCartList = document.querySelector("#confirmCartList");
@@ -240,14 +310,6 @@ $("#logInAccountButton").on("click", function(){
 
 
 /*
-
-
-
-
-
-
-
-
 
 $("#secondaryAccountButton").on("click", function() { 
         $("#modalTitle").text("Sign Up"); 

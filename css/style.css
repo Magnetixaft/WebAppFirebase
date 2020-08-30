@@ -127,6 +127,8 @@ html, body {
 
 
 
+
+
 .fixed-background {
   padding: 15rem 0;
   border-top: .05rem solid #000000;
@@ -135,8 +137,9 @@ html, body {
 
 }
 .fixed {
-  background-image: url('../img/clean-drop-ps.png');
-  position: fixed;
+  background-image: url('../img/backgroundTest.svg');
+  position: relative;
+  
 }
 
 

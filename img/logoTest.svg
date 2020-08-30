@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 80 46.549503"
+   height="46.549503mm"
+   width="80mm">
+  <defs
+     id="defs2">
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient2799">
+      <stop
+         id="stop2797"
+         offset="0"
+         style="stop-color:#000000;stop-opacity:1;" />
+    </linearGradient>
+    <rect
+       id="rect851"
+       height="26.269344"
+       width="58.39732"
+       y="117.5506"
+       x="68.980652" />
+    <rect
+       x="68.980652"
+       y="117.5506"
+       width="58.39732"
+       height="26.269344"
+       id="rect851-4" />
+    <rect
+       x="68.980652"
+       y="117.5506"
+       width="58.39732"
+       height="26.269344"
+       id="rect2820" />
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-60.583337,-110.21185)"
+     id="layer1">
+    <path
+       d="m 152.70238,134.18155 a 38.175598,44.223213 0 0 1 -37.11483,44.20614 38.175598,44.223213 0 0 1 -39.177412,-41.74948 38.175598,44.223213 0 0 1 34.937632,-46.526275 38.175598,44.223213 0 0 1 41.119,39.163875 l -37.93998,4.90574 z"
+       id="path833"
+       style="opacity:0;fill:#ffce33;stroke:#000000;stroke-width:1.011;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <ellipse
+       ry="39.6875"
+       rx="35.151787"
+       cy="141.74107"
+       cx="96.383926"
+       id="path835"
+       style="opacity:0;fill:#ffce33;stroke:#000000;stroke-width:1.011;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <circle
+       r="47.169811"
+       cy="130"
+       cx="100"
+       id="path837"
+       style="opacity:1;fill:#ffce33;stroke:#000000;stroke-width:5.66038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       transform="matrix(1.6902329,0,0,1.8549779,-57.463623,-111.3748)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:'Tempus Sans ITC';-inkscape-font-specification:'Tempus Sans ITC, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect851);fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+       id="text849"
+       xml:space="preserve"><tspan
+         x="68.980469"
+         y="126.79805"><tspan>Restaurang</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text849-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:'Tempus Sans ITC';-inkscape-font-specification:'Tempus Sans ITC, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;white-space:pre;shape-inside:url(#rect851-4);fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+       transform="matrix(1.6902329,0,0,1.8549779,-49.098756,-84.628555)"><tspan
+         x="68.980469"
+         y="126.79805"><tspan>Logotyp</tspan></tspan></text>
+  </g>
+</svg>
